@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import taskRouter from "./task.route.js";
 dotenv.config();
 
 mongoose
@@ -19,3 +20,5 @@ app.use(express.json());
 app.listen(3000, () => {
   console.log("server is running at 3000");
 });
+
+app.use("/api/task", taskRouter);
