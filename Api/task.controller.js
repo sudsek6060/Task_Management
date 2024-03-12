@@ -41,3 +41,22 @@ export const deleteTask = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getTaskListings = async (req, res, next) => {
+  try {
+    const listings = await Task.find();
+    res.status(200).json(listings);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getTask = async (req, res, next) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    if (!task) next(errorHandler(404, "Task not found"));
+    res.status(200).json(task);
+  } catch (error) {
+    next(error);
+  }
+};
